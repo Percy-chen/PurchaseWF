@@ -1,0 +1,1 @@
+$.context.currentDate = new Date();

@@ -1,0 +1,147 @@
+{
+	"_version": "1.1.0",
+	"sap.app": {
+		"id": "firstusertask",
+		"_version": "1.3.0",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{APPTITLE}}",
+		"description": "{{APPDESCRIPTION}}",
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.40.12"
+		},
+		"dataSources": {
+			"API_PURCHASEORDER_PROCESS_SRV": {
+				"uri": "/html5apps/purchasewf/destinations/WT_S4HC/API_PURCHASEORDER_PROCESS_SRV/",
+				"type": "OData",
+				"settings": {
+					"annotations": []
+				}
+			},
+			"YY1_PURCHASEORD_ITEMS_CDS": {
+				"uri": "/html5apps/purchasewf/destinations/WT_S4HC/YY1_PURCHASEORD_ITEMS_CDS/",
+				"type": "OData",
+				"settings": {
+					"annotations": []
+				}
+			},
+			"PURCHASE.xsodata": {
+				"uri": "/html5apps/purchasewf/destinations/APLEXHANA/PURCHASE.xsodata/",
+				"type": "OData",
+				"settings": {
+					"annotations": []
+				}
+			},
+			"WORKFLOWLOG.xsodata": {
+				"uri": "/html5apps/purchasewf/destinations/APLEXHANA/WORKFLOWLOG.xsodata/",
+				"type": "OData",
+				"settings": {
+					"annotations": []
+				}
+			}
+		}
+	},
+
+	"sap.ui": {
+		"_version": "1.3.0",
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_belize"
+		]
+	},
+
+	"sap.ui5": {
+		"_version": "1.2.0",
+		"rootView": {
+			"viewName": "orderApprove.view.App",
+			"type": "XML"
+		},
+		"dependencies": {
+			"minUI5Version": "1.30.0",
+			"libs": {
+				"sap.ui.layout": {},
+				"sap.ui.core": {},
+				"sap.m": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "orderApprove.i18n.i18n"
+				}
+			},
+			"API_PURCHASEORDER_PROCESS": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Auto",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request",
+					"useBatch": true
+				},
+				"dataSource": "API_PURCHASEORDER_PROCESS_SRV",
+				"preload": true
+			},
+			"YY1_PURCHASEORD_ITEMS": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Auto",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request",
+					"useBatch": true
+				},
+				"dataSource": "YY1_PURCHASEORD_ITEMS_CDS",
+				"preload": true
+			},
+			"PURCHASE": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request",
+					"useBatch": true
+				},
+				"dataSource": "PURCHASE.xsodata",
+				"preload": true
+			},
+			"WORKFLOWLOG": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request",
+					"useBatch": true
+				},
+				"dataSource": "WORKFLOWLOG.xsodata",
+				"preload": true
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		}
+	}
+}

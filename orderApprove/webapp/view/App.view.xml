@@ -1,0 +1,144 @@
+<mvc:View controllerName="orderApprove.controller.App" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:t="sap.ui.table" xmlns:core="sap.ui.core" displayBlock="true" busy="{appModel>/isBusy}">
+	<App id="idAppControl">
+		<pages>
+			<Page title="{data>/task/title}" showHeader="false" showFooter="false">
+				<content>
+					<ObjectHeader title="{data>/task/title}" backgroundDesign="Solid">
+						<attributes>
+							<ObjectAttribute title="{i18n>Createdon}" text="{path: 'data>/task/createdOn', formatter: '.formatDate'}"/>
+						</attributes>
+						<statuses>
+							<ObjectStatus title="{i18n>ApplicationStatus}" text="{data>/context/ApprovalStatuText}"/>
+						</statuses>
+					</ObjectHeader>
+					<!-- Everything starting from here is just an example -->
+					<IconTabBar expanded="{device>/isNoPhone}" class="sapUiSmallMarginBottom sapUiResponsiveContentPadding">
+						<items>
+							<IconTabFilter text="{i18n>Header}">
+								<f:SimpleForm minWidth="1024" maxContainerCols="2" layout="ResponsiveGridLayout">
+									<f:title>
+										<core:Title text="{i18n>BasicData}"/>
+									</f:title>
+									<Label text="{i18n>POType}"/>
+									<Text text="{data>/context/PurchaseHead/YY1_PurType_PDH}"/>
+									<Label text="{i18n>PONumber}"/>
+									<Text text="{data>/context/PurchaseHead/PurchaseOrder}"/>
+									
+									<Label text="{i18n>Supplier}"/>
+									<Text text="{data>/context/PurchaseHead/SupplierName}"/>
+									<Label text="{i18n>PaymentCondition}"/>
+									<Text text="{data>/context/PurchaseHead/CustomerPaymentTermsName}"/>
+									
+									<Label text="{i18n>Applicant}"/>
+									<Text text="{data>/context/PurchaseHead/PersonFullName}"/>
+									<Label text="{i18n>ApplicationDate}"/>
+									<Text text="{path: 'data>/context/PurchaseHead/CreationDate', formatter: '.dateString'}"/>
+								</f:SimpleForm>
+							</IconTabFilter>
+							<IconTabFilter text="{i18n>Detail}">
+								<t:Table rows="{path:'data>/context/PurchaseList',
+										sorter: {
+											path: 'data>PurchaseOrderItem',
+											descending: false,
+											group: false
+										}}" 
+									class="sapFDynamicPageAlignContent" 
+									selectionMode="None" 
+									visibleRowCount="7rem">
+									<t:columns>
+										<t:Column label="{i18n>ItemNumber}" hAlign="Center" width="3rem">
+											<t:template>
+												<Text text="{path:'data>PurchaseOrderItem', 
+														formatter:'.deleteLeftZero'}" 
+													maxLines="1" />
+											</t:template>
+										</t:Column>
+										<t:Column label="{i18n>AccountAssignmentType}" hAlign="Center" width="7rem">
+											<t:template>
+												<Text text="{data>AccountAssignmentCategory}" maxLines="1" />
+											</t:template>
+										</t:Column>
+										<t:Column label="{i18n>ItemType}" hAlign="Center" width="5rem">
+											<t:template>
+												<Text text="{data>PurchaseOrderItemCategory}" maxLines="1" />
+											</t:template>
+										</t:Column>
+										<t:Column label="{i18n>MaterialNumber}" hAlign="Center" width="11rem">
+											<t:template>
+												<Text text="{data>Material}" maxLines="1" />
+											</t:template>
+										</t:Column>
+										<t:Column label="{i18n>MaterialDescription}" hAlign="Center" width="15rem">
+											<t:template>
+												<Text text="{data>PurchaseOrderItemText}" maxLines="1" tooltip="{data>PurchaseOrderItemText}" />
+											</t:template>
+										</t:Column>
+										<t:Column label="{i18n>Quantity}" hAlign="Center" width="5rem">
+											<t:template>
+												<Text text="{data>OrderQuantity}" maxLines="1" />
+											</t:template>
+										</t:Column>
+										<t:Column label="{i18n>Unit}" hAlign="Center" width="5rem">
+											<t:template>
+												<Text text="{data>PurchaseOrderQuantityUnit}" maxLines="1" />
+											</t:template>
+										</t:Column>
+										
+										<t:Column label="{i18n>NetPrice}" hAlign="Center" width="6rem">
+											<t:template>
+												<Text text="{data>NetPriceAmount}" maxLines="1" />
+											</t:template>
+										</t:Column>
+										<t:Column label="{i18n>Currency}" hAlign="Center" width="3rem">
+											<t:template>
+												<Text text="{data>DocumentCurrency}" maxLines="1" />
+											</t:template>
+										</t:Column>
+										<t:Column label="{i18n>TaxPrice}" hAlign="Center" width="6rem">
+											<t:template>
+												<Text text="{data>TaxPrice}" maxLines="1" />
+											</t:template>
+										</t:Column>
+										<t:Column label="{i18n>Amount}" hAlign="Center" width="6rem">
+											<t:template>
+												<Text text="{data>Amount}" maxLines="1" />
+											</t:template>
+										</t:Column>
+										<t:Column label="{i18n>TaxCode}" hAlign="Center" width="3rem">
+											<t:template>
+												<Text text="{data>TaxCode}" maxLines="1" />
+											</t:template>
+										</t:Column>
+										<t:Column label="{i18n>Plant}" hAlign="Center" width="4rem">
+											<t:template>
+												<Text text="{data>Plant}" maxLines="1" />
+											</t:template>
+										</t:Column>
+										<t:Column label="{i18n>DeliveryDate}" hAlign="Center" width="6rem">
+											<t:template>
+												<Text text="{path: 'data>ScheduleLineDeliveryDate', formatter: '.dateString'}" maxLines="1" />
+											</t:template>
+										</t:Column>
+										<t:Column label="{i18n>Remarks}" hAlign="Center" width="9rem">
+											<t:template>
+												<Text text="{data>RequisitionerName}" maxLines="1" tooltip="{data>RequisitionerName}" />
+											</t:template>
+										</t:Column>
+										<t:Column label="{i18n>ChangeExplanation}" hAlign="Center" width="9rem" 
+											visible="{path: 'data>/context/Change', formatter: '.setColumnVis'}">
+											<t:template>
+												<Text text="{data>IncotermsLocation1}" maxLines="1" tooltip="{data>IncotermsLocation1}" />
+											</t:template>
+										</t:Column>
+									</t:columns>
+								</t:Table>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+					<!-- End of example coding -->
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

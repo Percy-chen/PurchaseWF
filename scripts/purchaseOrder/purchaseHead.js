@@ -1,0 +1,1 @@
+$.context.PurchaseHead = $.context.A_PurchaseOrder.response.d.results[0];

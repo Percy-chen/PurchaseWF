@@ -1,0 +1,21 @@
+COLUMN TABLE "APLEXHANA.db::PAYMENT" (
+	"APPNUM" NVARCHAR(10) Comment '申请单号',
+	-- "APP_TYPE" NVARCHAR(2) Comment '申请类型',
+	"CREATEDATETIME" DATE Comment '申请日期时间',
+	-- "STATUS"NVARCHAR(2) Comment '申请单状态',
+	"DEMANDER" NVARCHAR(30) Comment '申请人',
+	-- "DEMDEPART" NVARCHAR(30) Comment '申请部门',
+	"BUKRS" NVARCHAR(4) Comment '公司(代码)',
+	"BANKGLACCOUNT" NVARCHAR(10) Comment '付款银行总账科目',
+	"SUPPLIERS" NVARCHAR(100) Comment '供应商',
+	"TRADECURRENCY" NVARCHAR(5) Comment '交易货币',
+	"PAYCURRENCY" NVARCHAR(5) Comment '付款货币',
+	"ASSIGNMENT" NVARCHAR(18) Comment '分配',
+	"OVERDUEDATE" DATE Comment '到期日',
+	"RATE" DECIMAL(9,5) Comment '汇率',
+	"ACCOUNTINGDOCUMENT" NVARCHAR(10) Comment '会计凭证号',
+	"COMPANYCODE" NVARCHAR(4) Comment '会计公司',
+	"FISCALYEAR" NVARCHAR(4) Comment '会计年度',
+	-- "ERNAM" NVARCHAR(30) Comment '填单人',
+	Primary Key ("APPNUM") )
+	Comment '付款申请抬头表'
